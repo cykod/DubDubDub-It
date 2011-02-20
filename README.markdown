@@ -58,10 +58,23 @@ Login via ssh
    sudo nohup node server.js &
 
 
-Configuring With Upstart and Monit
+Configuring With Init script and Monit
 =================================
 
-    sudo yum install upstart monit
+   # Install upstart and monit
+   sudo yum install monit
+
+   # copy upstart program to /etc/init/
+   sudo cp /home/ec2-user/dubdubdubit/extra/dubdubdubit /etc/init.d/
+   sudo chmod u+x /etc/init.d/dubdubdubit
+   sudo update-rc.d dubdubdubit defaults
+
+
+   # copy monit program to /etc/monit.d/
+   sudo cp /home/ec2-user/dubdubdubit/extra/monit /etc/monit.d/dubdubdubit
+
+
+   sudo /etc/init.d/monit start
 
 
 

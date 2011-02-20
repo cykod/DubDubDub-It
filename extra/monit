@@ -1,6 +1,5 @@
 #!monit
 
-
 # Save in /etc/monit/monitrc 
 
 set logfile /var/log/monit.log

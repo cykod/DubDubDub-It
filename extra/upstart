@@ -1,6 +1,10 @@
 #!upstart
+#
+# Copy to /etc/init/dubdubdubit.conf
+# sudo cp /home/ec2-user/dubdubdubit/extra/upstart /etc/init/dubdubdubit.conf
 description "DubDubDubIt Server"
 author      "cykod"
+
 
 start on startup
 stop on shutdown

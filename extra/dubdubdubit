@@ -1,0 +1,65 @@
+#!/bin/sh
+#
+# dubdubdubit bring up and down dubdubdubit server
+#
+# chkconfig: 345 20 80
+# description: Starts and stops the dubdubdubit node server
+#
+# /etc/rc.d/init.d/dubdubdubit
+
+DAEMON=/usr/local/bin/node
+PARAMS="/home/ec2-user/dubdubdubit/server.js"
+LOGFILE=/home/ec2-user/dubdubdubit/log/dubdubdubit.log
+
+start() {
+    echo -n "starting up $DAEMON"
+    RUN=`cd / && $DAEMON $PARAMETERS > $LOGFILE 2>&1`
+
+    if [ "$?" -eq 0 ]; then
+        echo "Done."
+    else
+        echo "FAILED."
+    fi
+}
+
+stop() {
+    killall $DAEMON
+}
+
+status() {
+    killall -0 $DAEMON
+
+    if [ "$?" -eq 0 ]; then
+        echo "Running."
+    else
+        echo "Not Running."
+    fi
+}
+
+case "$1" in
+    start)
+    start
+    ;;
+
+    restart)
+    stop
+    sleep 2
+    start
+    ;;
+
+    stop)
+    stop
+    ;;
+
+    status)
+    status
+    ;;
+
+    *)
+    echo "usage : $0 start|restart|stop|status"
+    ;;
+esac
+
+exit 0
+
+
