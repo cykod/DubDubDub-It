@@ -1,0 +1,12 @@
+#!upstart
+description "DubDubDubIt Server"
+author      "cykod"
+
+start on startup
+stop on shutdown
+
+script
+    export HOME="/root"
+
+    exec sudo /usr/local/bin/node /home/ec2-user/dubdubdubit/server.js 2>&1 >> /home/ec2-user/log/dubdubdubit.log
+end script

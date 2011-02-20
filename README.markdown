@@ -22,13 +22,46 @@ is not an instaneous proposition.
 Instead, if we treat the redirecting from domain.com to www.domain.com as a separate service in a Service Oriented Archtecture, we can keep a 
 few separate machines up to handle the redirect requests and configure round robin DNS.
 
-The addition of Amazon micro-instances (~$14/mo or ~$5/mo reserved) makes it an affordable proposition.
+The addition of Amazon micro-instances (~$14/mo or ~$5/mo reserved) makes it an affordable proposition. Basic load testing with Apache Bench shows
+~3000 reqs/second on a single micro-instance. 
 
 Additional Benefits
 ===================
 
 * Simplified Setup - no web server required as all requests are served directly by the server.
-* Your application server is hidden behind a load balancer, hiding the IP address of the system from intrusion attempts.
+* Your application servers are hidden behind a load balancer, hiding the IP address of the system from intrusion attempts.
+* Because the DubDubDubIt server doesn't touch any credit card or user data, it won't factor into your PCI compliance
+
+
+Installation
+============
+
+Launch a new amazon 32-bt micro instance
+Login via ssh
+
+   # Install required packages for compiling node
+   sudo yum install gcc-c++ gcc python libssl-dev git
+
+   # Get, configure, compile and install node
+   wget http://nodejs.org/dist/node-v0.4.1.tar.gz
+   tar -xzvf node-v0.4.1.tar.gz 
+   cd node-v0.4.1
+   ./configure --prefix=/usr/local --without-ssl
+   make
+   # Wait a while as micro instances are sloooooooow (it'll start fast then throttle the CPU)
+   sudo make install
+   cd ..
+
+   # Get DubDubDubIt
+   git clone git://github.com/cykod/DubDubDub-It.git dubdubdubit
+   cd dubdubdubit
+   sudo nohup node server.js &
+
+
+Configuring With Upstart and Monit
+=================================
+
+    sudo yum install upstart monit
 
 
 

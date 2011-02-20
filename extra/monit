@@ -1,0 +1,14 @@
+#!monit
+
+
+# Save in /etc/monit/monitrc 
+
+set logfile /var/log/monit.log
+
+check host nodejs with address 127.0.0.1
+    start program = "/sbin/start dubdubdubit"
+    stop program  = "/sbin/stop dubdubdubit"
+    if failed port 80 protocol HTTP
+        request /
+        with timeout 4 seconds
+        then restart
