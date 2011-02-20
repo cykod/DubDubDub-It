@@ -13,7 +13,7 @@ LOGFILE=/home/ec2-user/dubdubdubit/log/dubdubdubit.log
 
 start() {
     echo -n "starting up $DAEMON"
-    RUN=`cd / && $DAEMON $PARAMETERS > $LOGFILE 2>&1`
+    cd / && $DAEMON $PARAMETERS > $LOGFILE 2>&1
 
     if [ "$?" -eq 0 ]; then
         echo "Done."

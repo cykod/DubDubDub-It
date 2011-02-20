@@ -67,7 +67,8 @@ Configuring With Init script and Monit
    # copy upstart program to /etc/init/
    sudo cp /home/ec2-user/dubdubdubit/extra/dubdubdubit /etc/init.d/
    sudo chmod u+x /etc/init.d/dubdubdubit
-   sudo update-rc.d dubdubdubit defaults
+   sudo chkconfig --add dubdubdubit
+
 
 
    # copy monit program to /etc/monit.d/
