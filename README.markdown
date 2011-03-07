@@ -39,43 +39,42 @@ Installation
 Launch a new amazon 32-bt micro instance
 Login via ssh
 
-   # Install required packages for compiling node
-   sudo yum install gcc-c++ gcc python libssl-dev git
-
-   # Get, configure, compile and install node
-   wget http://nodejs.org/dist/node-v0.4.1.tar.gz
-   tar -xzvf node-v0.4.1.tar.gz 
-   cd node-v0.4.1
-   ./configure --prefix=/usr/local --without-ssl
-   make
-   # Wait a while as micro instances are sloooooooow (it'll start fast then throttle the CPU)
-   sudo make install
-   cd ..
-
-   # Get DubDubDubIt
-   git clone git://github.com/cykod/DubDubDub-It.git dubdubdubit
-   cd dubdubdubit
-   sudo nohup node server.js &
+     # Install required packages for compiling node
+     sudo yum install gcc-c++ gcc python libssl-dev git
+  
+     # Get, configure, compile and install node
+     wget http://nodejs.org/dist/node-v0.4.1.tar.gz
+     tar -xzvf node-v0.4.1.tar.gz 
+     cd node-v0.4.1
+     ./configure --prefix=/usr/local --without-ssl
+     make
+     # Wait a while as micro instances are sloooooooow (it'll start fast then throttle the CPU)
+     sudo make install
+     cd ..
+  
+     # Get DubDubDubIt
+     git clone git://github.com/cykod/DubDubDub-It.git dubdubdubit
+     cd dubdubdubit
+     sudo nohup node server.js &
 
 
 Configuring With Init script and Monit
 =================================
 
-   # Install upstart and monit
-   sudo yum install monit
+     # Install upstart and monit
+     sudo yum install monit
 
-   # copy upstart program to /etc/init/
-   sudo cp /home/ec2-user/dubdubdubit/extra/dubdubdubit /etc/init.d/
-   sudo chmod u+x /etc/init.d/dubdubdubit
-   sudo chkconfig --add dubdubdubit
-
-
-
-   # copy monit program to /etc/monit.d/
-   sudo cp /home/ec2-user/dubdubdubit/extra/monit /etc/monit.d/dubdubdubit
+     # copy upstart program to /etc/init/
+     sudo cp /home/ec2-user/dubdubdubit/extra/dubdubdubit /etc/init.d/
+     sudo chmod u+x /etc/init.d/dubdubdubit
+     sudo chkconfig --add dubdubdubit
+  
 
 
-   sudo /etc/init.d/monit start
+     # copy monit program to /etc/monit.d/
+     sudo cp /home/ec2-user/dubdubdubit/extra/monit /etc/monit.d/dubdubdubit
+
+     sudo /etc/init.d/monit start
 
 
 

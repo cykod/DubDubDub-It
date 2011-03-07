@@ -5,8 +5,8 @@
 set logfile /var/log/monit.log
 
 check host nodejs with address 127.0.0.1
-    start program = "/sbin/start dubdubdubit"
-    stop program  = "/sbin/stop dubdubdubit"
+    start program = "/etc/init.d/dubdubdubit start"
+    stop program  = "/etc/init.d/dubdubdubit stop"
     if failed port 80 protocol HTTP
         request /
         with timeout 4 seconds
